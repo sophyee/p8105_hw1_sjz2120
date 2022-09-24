@@ -39,3 +39,39 @@ ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)
 ggsave("flipper_vs_bill_scatterplot.pdf", height = 4, width = 6)
 ```
 
+
+# Problem 2
+```{r create_df}
+problem2_df = tibble(
+  rand_samp_10 = rnorm(10),
+  greater_zero = c(rand_samp_10 > 0),
+  char_vec_10 = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
+  vec_factor_10 = factor(c("high", "medium", "low", "medium","high", "high", "low", "low", "medium", "high"))
+)
+```
+
+
+```{r try_to_take_means}
+mean(pull(problem2_df, rand_samp_10))
+mean(pull(problem2_df, greater_zero))
+mean(pull(problem2_df, char_vec_10))
+mean(pull(problem2_df, vec_factor_10))
+```
+We're able to take the mean of variables **rand_samp_10** and **greater_zero** because they are **numeric and logical variable types** (respectively), meaning that we can take the mean of them.
+
+However, we're unable to take the mean of **variables char_vec_10** and **vec_factor_10** because they are character and factor variable types (respectively). Since neither of them are numeric or logical variable types, we can't take the mean of these variables.
+
+```{r apply_as_numeric, results='hide'}
+as.numeric(pull(problem2_df, greater_zero))
+as.numeric(pull(problem2_df, char_vec_10))
+as.numeric(pull(problem2_df, vec_factor_10))
+```
+For the logical variable **greater_zero,** the FALSE values are recoded as 0 while the TRUE values are recoded as 1 (thus the variable becomes numeric).
+
+For the character variable **char_vec_10,** all of the values become **NA** because there is no way to recode the character values numerically.
+
+For the factor variable **vec_factor_10,** the three different levels are recoded as numbers. In this case, "high" was recoded as 1, "medium" was recoded as 3, and "low" was recoded as 2.
+
+This helps explain what happens when we try to take the mean of each of these non-numeric variables. For the logical variable **greater_zero,** we're able to take the mean because FALSE=0 and TRUE=1 (they can already be considered numbers).
+
+However, for **char_vec_10** and **vec_factor_10** we are  unable to take their means because their values are not numeric; and only **vec_factor_10** can be converted to a numeric variable after using as.numeric.
