@@ -57,9 +57,9 @@ mean(pull(problem2_df, greater_zero))
 mean(pull(problem2_df, char_vec_10))
 mean(pull(problem2_df, vec_factor_10))
 ```
-We're able to take the mean of variables **rand_samp_10** and **greater_zero** because they are **numeric and logical variable types** (respectively), meaning that we can take the mean of them.
+We're able to take the mean of variables **rand_samp_10** and **greater_zero** because they are **numeric and logical variable types** (respectively), meaning that their values can be represented numerically (for logical variable types, TRUE=1 and FALSE=0, and we can take the mean of these 1s and 0s).
 
-However, we're unable to take the mean of **variables char_vec_10** and **vec_factor_10** because they are character and factor variable types (respectively). Since neither of them are numeric or logical variable types, we can't take the mean of these variables.
+However, we're unable to take the mean of **variables char_vec_10** and **vec_factor_10** because they are character and factor variable types (respectively). Since neither of them in their current forms are able to be represented as numbers, we can't take the mean of these variables.
 
 ```{r apply_as_numeric, results='hide'}
 as.numeric(pull(problem2_df, greater_zero))
