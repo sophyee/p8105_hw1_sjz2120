@@ -45,7 +45,11 @@ and **`r ncol(penguins)` columns (variables)**.
 Make a scatterplot of flipper_length_mm (y) vs bill_length_mm (x), using color points for the species variable:
 ```{r penguins_flipper_bill_scatterplot}
 ##Create scatterplot of flipper length (y) vs bill length (x)
-ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point() + xlab("Bill Length (mm)") + ylab("Flipper Length (mm)") + ggtitle("Plot of Penguin Flipper vs Bill Length (by species)")
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) +
+  geom_point() +
+  xlab("Bill Length (mm)") +
+  ylab("Flipper Length (mm)") +
+  ggtitle("Plot of Penguin Flipper vs Bill Length (by species)")
 ```
 
 ## Exporting the `penguins` flipper vs bill length scatterplot
